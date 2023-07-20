@@ -17,7 +17,7 @@ while True:
     opcao = input(menu)
 
     if opcao == "d" or menu == "D":
-        print(" Deposito ".center(15, "="))     
+        print(" Deposito ".center(40, "="))     
         valor = float(input("Insira o valor a ser depositado: R$"))   
         if valor >= 0:
                 saldo += valor
@@ -27,7 +27,7 @@ while True:
             print("valor invalido, insira um valor valido.")
             
     elif opcao == "s" or menu == "S":
-        print(" Sacar ".center(15, "="))
+        print(" Sacar ".center(56, "="))
         
         valor = float(input("Informe o valor do saque: R$"))
 
@@ -61,10 +61,10 @@ while True:
     
     elif opcao == "e" or menu == "E":
         print()
-        print(" Extrato ".center(32, "="))
+        print(" Extrato ".center(36, "="))
         print("Não foram realizadas movimentações." if not extrato else extrato)  
         print(f"\nSaldo: R$ {saldo:.2f}")
-        print("".center(32, "="))
+        print("".center(36, "="))
     elif opcao == "f" or menu == "F":
         break
     
