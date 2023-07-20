@@ -7,10 +7,13 @@ menu = '''
 ==========================
 ==> '''
 saldo = 0
-limite = 500
+limite_saque_dia = 500
+limite_deposito_dia = 1500
 extrato = ""
 numero_de_saques = 0
 LIMITE_DE_SAQUES = 3
+numero_de_depositos = 0
+LIMITE_DE_DEPOSITOS = 5
 
 while True:
 
@@ -19,10 +22,23 @@ while True:
     if opcao == "d" or opcao == "D":
         print(" Deposito ".center(40, "="))
         valor = float(input("Insira o valor a ser depositado: R$"))
-        if valor > 0:
+
+        excedeu_limite_deposito = valor > limite_deposito_dia 
+        excedeu_numero_deposito = numero_de_depositos >= LIMITE_DE_DEPOSITOS
+
+        if excedeu_limite_deposito:
+            print(f"Operação falhou! O valor do deposito excede o limite: R${limite_deposito_dia}")
+        elif excedeu_numero_deposito:
+            print("Operação falhou! Número máximo de depositos excedido.")
+            print(f"Numero de operaçoes realizada: {numero_de_depositos}")
+            print(F"Limite de Depositos: {LIMITE_DE_DEPOSITOS}")
+        elif valor > 0:
             saldo += valor
-            print(f"Valor depositado com sucesso: R${valor: .2f}")
+            numero_de_depositos += 1
             extrato += f"Deposito: R$ {valor:.2f}\n"
+            print(f"Valor depositado com sucesso: R${valor: .2f}")
+            print(f"Numero de operaçoes realizada: {numero_de_depositos}")
+            
         else:
             print("valor invalido, insira um valor valido.")
 
@@ -33,7 +49,7 @@ while True:
 
         excedeu_saldo = valor > saldo
 
-        excedeu_limite = valor > limite
+        excedeu_limite = valor > limite_saque_dia
 
         excedeu_saques = numero_de_saques >= LIMITE_DE_SAQUES
 
@@ -42,9 +58,7 @@ while True:
             print(f"Saldo atual: R${saldo}")
 
         elif excedeu_limite:
-            print(
-                f"Operação falhou! O valor do saque excede o limite: R${limite}")
-
+            print(f"Operação falhou! O valor do saque excede o limite: R${limite_saque_dia}")
         elif excedeu_saques:
             print("Operação falhou! Número máximo de saques excedido.")
             print(f"Numero de operaçoes realizada: {numero_de_saques}")
