@@ -19,7 +19,7 @@ while True:
     if opcao == "d" or menu == "D":
         print(" Deposito ".center(40, "="))     
         valor = float(input("Insira o valor a ser depositado: R$"))   
-        if valor >= 0:
+        if valor > 0:
                 saldo += valor
                 print(f"Valor depositado com sucesso: R${valor: .2f}")
                 extrato += f"Deposito: R$ {valor:.2f}\n"
